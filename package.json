@@ -1,0 +1,22 @@
+{
+  "name": "dev-proxy",
+  "version": "1.0.0",
+  "description": "Simple proxy for development work",
+  "main": "index.js",
+  "repository": "git@github.com:u9520107/dev-proxy",
+  "author": "Jack Tzu-Chieh Huang",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "http-proxy": "^1.18.1",
+    "pm2": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/http-proxy": "^1.17.8",
+    "@types/node": "^16.11.26"
+  },
+  "scripts": {
+    "start": "yarn pm2 start ./index.js",
+    "stop": "yarn pm2 stop ./index.js"
+  }
+}

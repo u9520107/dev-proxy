@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="MailApp">
+  <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
+
+  <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
+  <Id>1b8b021b-54df-4afd-adbc-74f9ae9b2d21</Id>
+  <!--Version. Updates from the store only get triggered if there is a version change. -->
+  <Version>22.2.1</Version>
+  <ProviderName>RingCentral Inc.</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
+  <DisplayName DefaultValue="RingCentral Scheduler(dev)">
+    <Override Locale="en-GB" Value="RingCentral Scheduler(dev)" /><Override Locale="en-AU" Value="RingCentral Scheduler(dev)" /><Override Locale="fr-FR" Value="RingCentral Scheduler(dev)" /><Override Locale="fr-CA" Value="RingCentral Scheduler(dev)" /><Override Locale="de-DE" Value="RingCentral Scheduler(dev)" /><Override Locale="it-IT" Value="RingCentral Scheduler(dev)" /><Override Locale="es-419" Value="RingCentral Scheduler(dev)" /><Override Locale="es-ES" Value="RingCentral Scheduler(dev)" /><Override Locale="ja-JP" Value="RingCentral Scheduler(dev)" /><Override Locale="pt-PT" Value="RingCentral Scheduler(dev)" /><Override Locale="pt-BR" Value="RingCentral Scheduler(dev)" /><Override Locale="zh-CN" Value="RingCentral Scheduler(dev)" /><Override Locale="zh-TW" Value="RingCentral Scheduler(dev)" /><Override Locale="zh-HK" Value="RingCentral Scheduler(dev)" /><Override Locale="nl-NL" Value="RingCentral Scheduler(dev)" /><Override Locale="ko-KR" Value="RingCentral Scheduler(dev)" /><Override Locale="fi-FI" Value="RingCentral Scheduler(dev)" />
+  </DisplayName>
+  <Description DefaultValue="Schedule a RingCentral Video or RingCentral Meetings with just one click">
+    <Override Locale="en-GB" Value="Schedule a RingCentral Video or RingCentral Meetings with just one click" /><Override Locale="en-AU" Value="Schedule a RingCentral Video or RingCentral Meetings with just one click" /><Override Locale="fr-FR" Value="Planifier un RingCentral Videoou un RingCentral Meetings en un clic" /><Override Locale="fr-CA" Value="Planifiez une RingCentral Video ou une RingCentral Meetings en un seul clic." /><Override Locale="de-DE" Value="Planen Sie ein RingCentral Video oder RingCentral Meetings – mit nur einem Klick" /><Override Locale="it-IT" Value="Programma una RingCentral Video o una RingCentral Meetings con un semplice clic" /><Override Locale="es-419" Value="Programe un RingCentral Video o un RingCentral Meetings tan solo con un clic." /><Override Locale="es-ES" Value="Programe un RingCentral Video o RingCentral Meetings con tan solo un clic" /><Override Locale="ja-JP" Value="ワンクリックでRingCentral VideoまたはRingCentral Meetingsをスケジュール" /><Override Locale="pt-PT" Value="Agende uma RingCentral Video ou uma RingCentral Meetings com apenas um clique" /><Override Locale="pt-BR" Value="Agende um RingCentral Video ou RingCentral Meetings com apenas um clique" /><Override Locale="zh-CN" Value="一键安排 RingCentral Video 或 RingCentral Meetings" /><Override Locale="zh-TW" Value="點擊一下即可排程 RingCentral Video 或 RingCentral Meetings。" /><Override Locale="zh-HK" Value="點擊一下即可排程 RingCentral Video 或 RingCentral Meetings。" /><Override Locale="nl-NL" Value="Plan een RingCentral Video of RingCentral Meetings met slechts één klik" /><Override Locale="ko-KR" Value="한 번의 클릭으로 RingCentral Video 또는 RingCentral Meetings 예약" /><Override Locale="fi-FI" Value="Ajoita RingCentral Video tai RingCentral Meetings yhdellä napsautuksella" />
+  </Description>
+
+  <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
+  <IconUrl DefaultValue="https://localhost:8082/office-add-ins/1210/assets/branding__rc__icon__Outlook_Scheduler__Scheduler_desktop__scheduler_64916c9c1755819b8febcd2696ea83774e.png" />
+  <HighResolutionIconUrl DefaultValue="https://localhost:8082/office-add-ins/1210/assets/branding__rc__icon__Outlook_Scheduler__Scheduler_desktop__scheduler_128b3065005ad14492d332abd6c6d9931b2.png" />
+
+  <!--If you plan to submit this add-in to the Office Store, uncomment the SupportUrl element below-->
+  <SupportUrl DefaultValue="https://support.ringcentral.com/" />
+
+  <AppDomains>
+    <AppDomain>https://apps.ringcentral.com</AppDomain>
+    <AppDomain>*.ringcentral.com</AppDomain>
+  </AppDomains>
+  <!--End Basic Settings. -->
+
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.1" />
+    </Sets>
+  </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://localhost:3000/" />
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+    <Form xsi:type="ItemEdit">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://localhost:3000/" />
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+  <Permissions>ReadWriteItem</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit" />
+    <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Edit" />
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+    <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Read" />
+  </Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.1">
+          <bt:Set Name="Mailbox" />
+        </bt:Sets>
+      </Requirements>
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <DesktopFormFactor>
+            <SupportsSharedFolders>true</SupportsSharedFolders>
+            <FunctionFile resid="quickScheduleUrl" />
+            <!-- Message Read -->
+            <ExtensionPoint xsi:type="AppointmentOrganizerCommandSurface">
+              <!-- Use the default tab of the ExtensionPoint or create your own with <CustomTab id="myTab"> -->
+              <OfficeTab id="TabDefault">
+                <!-- Up to 6 Groups added per Tab -->
+                <Group id="msgReadGroup">
+                  <Label resid="groupLabel" />
+                  <!-- Launch the add-in : task pane button -->
+                  <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                    <Label resid="buttonTitle" />
+                    <Supertip>
+                      <Title resid="buttonTitle" />
+                      <Description resid="organizerSuperTipDescription" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="icon16" />
+                      <bt:Image size="32" resid="icon32" />
+                      <bt:Image size="80" resid="icon80" />
+                    </Icon>
+                    <!--This is what happens when the command is triggered (E.g. click on the Ribbon). Supported actions are ExecuteFuncion or ShowTaskpane-->
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="organizerTaskPaneUrl" />
+                    </Action>
+                  </Control>
+                  <!-- Go to http://aka.ms/ButtonCommands to learn how to add more Controls: ExecuteFunction and Menu -->
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+            <!-- Go to http://aka.ms/ExtensionPointsCommands to learn how to add more Extension Points: MessageRead, AppointmentOrganizer, AppointmentAttendee -->
+          </DesktopFormFactor>
+          <MobileFormFactor>
+            <FunctionFile resid="mobileSupportUrl"/>
+            <ExtensionPoint xsi:type="MobileOnlineMeetingCommandSurface">
+              <Control xsi:type="MobileButton" id="insertMeetingButton">
+                <Label resid="buttonTitle"/>
+                <Icon>
+                  <bt:Image size="25" scale="1" resid="iconGray16"/>
+                  <bt:Image size="25" scale="2" resid="iconGray16"/>
+                  <bt:Image size="25" scale="3" resid="iconGray16"/>
+                  <bt:Image size="32" scale="1" resid="iconGray32"/>
+                  <bt:Image size="32" scale="2" resid="iconGray32"/>
+                  <bt:Image size="32" scale="3" resid="iconGray32"/>
+                  <bt:Image size="48" scale="1" resid="iconGray48"/>
+                  <bt:Image size="48" scale="2" resid="iconGray48"/>
+                  <bt:Image size="48" scale="3" resid="iconGray48"/>
+                </Icon>
+                <Action xsi:type="ExecuteFunction">
+                  <FunctionName>insertMeeting</FunctionName>
+                </Action>
+              </Control>
+            </ExtensionPoint>
+          </MobileFormFactor>
+        </Host>
+      </Hosts>
+      <Resources>
+        <bt:Images>
+          <bt:Image id="icon16" DefaultValue="https://localhost:8082/office-add-ins/1210/assets/branding__rc__icon__Outlook_Scheduler__Scheduler_desktop__scheduler_16cacfc4c06681245b1b6a0ba09c1f0c62.png" />
+          <bt:Image id="icon32" DefaultValue="https://localhost:8082/office-add-ins/1210/assets/branding__rc__icon__Outlook_Scheduler__Scheduler_desktop__scheduler_32a8e410e76e345700940e6147a2a08e79.png" />
+          <bt:Image id="icon48" DefaultValue="https://localhost:8082/office-add-ins/1210/assets/branding__rc__icon__Outlook_Scheduler__Scheduler_desktop__scheduler_48abb376bc3af827a6288cd0fedfead742.png" />
+          <bt:Image id="icon80" DefaultValue="https://localhost:8082/office-add-ins/1210/assets/branding__rc__icon__Outlook_Scheduler__Scheduler_desktop__scheduler_8084bc8a9517007055822226865d3fceba.png" />
+          <bt:Image id="iconGray16" DefaultValue="https://localhost:8082/office-add-ins/1210/assets/branding__rc__icon__Outlook_Scheduler__Outlook_Mobile__app-icon-16325a0db1ebc072c12da474578bc155e7.png" />
+          <bt:Image id="iconGray32" DefaultValue="https://localhost:8082/office-add-ins/1210/assets/branding__rc__icon__Outlook_Scheduler__Outlook_Mobile__app-icon-32df324c8babca6cb282ab45f3712d9879.png" />
+          <bt:Image id="iconGray48" DefaultValue="https://localhost:8082/office-add-ins/1210/assets/branding__rc__icon__Outlook_Scheduler__Outlook_Mobile__app-icon-4829e983038c4f9de75067ff07ff68a1a0.png" />
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="organizerTaskPaneUrl" DefaultValue="https://localhost:3000/" />
+          <bt:Url id="mobileSupportUrl" DefaultValue="https://localhost:3000/mobile.html" />
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="groupLabel" DefaultValue="RingCentral Scheduler(dev)">
+            <bt:Override Locale="en-GB" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="en-AU" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="fr-FR" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="fr-CA" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="de-DE" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="it-IT" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="es-419" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="es-ES" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="ja-JP" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="pt-PT" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="pt-BR" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="zh-CN" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="zh-TW" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="zh-HK" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="nl-NL" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="ko-KR" Value="RingCentral Scheduler(dev)" /><bt:Override Locale="fi-FI" Value="RingCentral Scheduler(dev)" />
+          </bt:String>
+          <bt:String id="buttonTitle" DefaultValue="Schedule with RingCentral">
+            <bt:Override Locale="en-GB" Value="Schedule with RingCentral" /><bt:Override Locale="en-AU" Value="Schedule with RingCentral" /><bt:Override Locale="fr-FR" Value="Planifier avec RingCentral" /><bt:Override Locale="fr-CA" Value="Planifier avec RingCentral" /><bt:Override Locale="de-DE" Value="Planen Sie mit RingCentral" /><bt:Override Locale="it-IT" Value="Programma con RingCentral" /><bt:Override Locale="es-419" Value="Programe con RingCentral" /><bt:Override Locale="es-ES" Value="Programar con RingCentral" /><bt:Override Locale="ja-JP" Value="RingCentralでスケジュール" /><bt:Override Locale="pt-PT" Value="Agendar com o RingCentral" /><bt:Override Locale="pt-BR" Value="Agendar com RingCentral" /><bt:Override Locale="zh-CN" Value="使用 RingCentral 安排" /><bt:Override Locale="zh-TW" Value="使用 RingCentral 排程" /><bt:Override Locale="zh-HK" Value="使用 RingCentral 排程" /><bt:Override Locale="nl-NL" Value="Plan met RingCentral" /><bt:Override Locale="ko-KR" Value="RingCentral(으)로 예약" /><bt:Override Locale="fi-FI" Value="Ajoita palvelussa RingCentral" />
+          </bt:String>
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="organizerSuperTipDescription" DefaultValue="Schedule with RingCentral">
+            <bt:Override Locale="en-GB" Value="Schedule with RingCentral" /><bt:Override Locale="en-AU" Value="Schedule with RingCentral" /><bt:Override Locale="fr-FR" Value="Planifier avec RingCentral" /><bt:Override Locale="fr-CA" Value="Planifier avec RingCentral" /><bt:Override Locale="de-DE" Value="Planen Sie mit RingCentral" /><bt:Override Locale="it-IT" Value="Programma con RingCentral" /><bt:Override Locale="es-419" Value="Programe con RingCentral" /><bt:Override Locale="es-ES" Value="Programar con RingCentral" /><bt:Override Locale="ja-JP" Value="RingCentralでスケジュール" /><bt:Override Locale="pt-PT" Value="Agendar com o RingCentral" /><bt:Override Locale="pt-BR" Value="Agendar com RingCentral" /><bt:Override Locale="zh-CN" Value="使用 RingCentral 安排" /><bt:Override Locale="zh-TW" Value="使用 RingCentral 排程" /><bt:Override Locale="zh-HK" Value="使用 RingCentral 排程" /><bt:Override Locale="nl-NL" Value="Plan met RingCentral" /><bt:Override Locale="ko-KR" Value="RingCentral(으)로 예약" /><bt:Override Locale="fi-FI" Value="Ajoita palvelussa RingCentral" />
+          </bt:String>
+        </bt:LongStrings>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>
